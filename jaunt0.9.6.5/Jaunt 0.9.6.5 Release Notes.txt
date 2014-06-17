@@ -1,0 +1,14 @@
+Jaunt 0.9.6.5 Release Notes
+
+Jaunt Beta is a free software project (Java API) to make web scraping & automation easier.
+
+Jaunt 0.9.6.5 public release date: May 31, 2014
+Jaunt 0.9.6.5 software expiry date: June 30, 2014
+
+Installation Instructions & Quickstart Tutorial
+http://jaunt-api.com/jaunt-tutorial.htm
+
+OVERVIEW
+
+This release contains the following bug fixes
+- names are now properly urlencoded in name-value pairs of querystring of HTTP requests.
