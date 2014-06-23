@@ -31,7 +31,7 @@ public class Main {
 			list.remove(0);
 			for(int i = 0 ; i < list.size() ; i++) {
 				Element element = list.get(i);
-				System.out.println(element);
+				//System.out.println(element);
 				List<Element> rows = element.getChildElements();
 				if (i==list.size()-1){
 					rows.remove(0);
@@ -39,7 +39,30 @@ public class Main {
 				for(int j = 0 ; j < rows.size() ; j++) {
 					Element row = rows.get(j);
 					//System.out.println(row.findFirst("<td nowrap>").getElement(0).innerText().trim());
-					System.out.println(row.findFirst("<td nowrap>").getElement(0).innerHTML().trim());
+					String name = row.findFirst("<td nowrap>").getElement(0).innerHTML().trim().replaceAll("<br>", " ~~~").trim();
+					String firstName = "";
+					String lastName = "";
+					
+					if (i != list.size()-1){
+						name = name.split("~~~")[0].trim();
+					}
+					else{
+						name = name.split("~~~")[1].trim() + " " + name.split("~~~")[0].trim();
+					}
+					
+					String[] tab = name.split(" ");
+					for(int k = 0 ; k < tab.length ; k++){
+						if(isUpperCase(tab[k])==false){
+							firstName = firstName + tab[k]+" ";
+						}
+						else{
+							lastName = tab[k];
+						}
+					}
+					
+					firstName.trim();
+					lastName.trim();
+					System.out.println(firstName + lastName);
 				}
 			}
 			
@@ -48,7 +71,19 @@ public class Main {
 		catch(JauntException e){
 			System.err.println(e);
 		}
+
+	}
+	
+	public static boolean isUpperCase(String str){
+		int j = 0;
+		for(int i = 0 ; i < str.length();i++){
+			if(Character.isUpperCase(str.charAt(i))){
+				j++;
+			}
+		}
 		
+		if(j == str.length()) return true;
+		return false;
 	}
 
 }
