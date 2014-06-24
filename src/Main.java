@@ -89,12 +89,15 @@ public class Main {
 			System.err.println(e);
 		}
 		
-		try {
-			ua.doc.saveAsXML("listeINFRES.xml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				ua.doc.getElement(0).saveAsXML("listeINFRES.xml");
+			} catch (NodeNotFound e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 	}
 	
