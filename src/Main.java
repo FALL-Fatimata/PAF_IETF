@@ -1,5 +1,7 @@
+import java.io.IOException;
 import java.util.List;
 
+import com.jaunt.Document;
 import com.jaunt.Element;
 import com.jaunt.Elements;
 import com.jaunt.Filter;
@@ -12,6 +14,19 @@ import com.jaunt.UserAgent;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		UserAgent ua = new UserAgent(); //will contain the result doc
+		int id = 0; //count the ids
+		
+		try {
+			ua.openContent("<liste></liste>");
+		} catch (ResponseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
 		try{
 			UserAgent userAgent = new UserAgent();    
 			userAgent.setFilter(new Filter(){                       //subclass Filter to override default settings
@@ -62,7 +77,12 @@ public class Main {
 					
 					firstName.trim();
 					lastName.trim();
-					System.out.println(firstName + lastName);
+					
+					Element pers = new Element("personne", null);
+					pers.setAttribute("id", Integer.toString(id));
+					pers.innerXML("<nom>" + lastName.toLowerCase() + "</nom><prenom>" + firstName.toLowerCase() + "</prenom>");
+					id++;
+					ua.doc.getElement(0).addChild(pers);
 				}
 			}
 			
@@ -70,6 +90,13 @@ public class Main {
 		}
 		catch(JauntException e){
 			System.err.println(e);
+		}
+		
+		try {
+			ua.doc.saveAsXML("listeINFRES.xml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
