@@ -16,7 +16,6 @@ public class Main {
 	public static void main(String[] args) {
 		
 		UserAgent ua = new UserAgent(); //will contain the result doc
-		int id = 0; //count the ids
 		
 		try {
 			ua.openContent("<liste></liste>");
@@ -79,9 +78,7 @@ public class Main {
 					lastName.trim();
 					
 					Element pers = new Element("personne", null);
-					pers.setAttribute("id", Integer.toString(id));
-					pers.innerXML("<nom>" + lastName.toLowerCase() + "</nom><prenom>" + firstName.toLowerCase() + "</prenom>");
-					id++;
+					pers.innerXML("<nom>" + lastName.toLowerCase() + " " + firstName.toLowerCase() + "</nom>");
 					ua.doc.getElement(0).addChild(pers);
 				}
 			}
