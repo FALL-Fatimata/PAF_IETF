@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Liste {
 	
-	private ArrayList<String> liste;
+	private ArrayList<Objet> liste;
 	
-	Liste(ArrayList<String> article)
+	Liste(ArrayList<Objet> article)
 	{
 		liste=new ArrayList();
 		for (int i=0;i<article.size();i++){
@@ -15,17 +15,17 @@ public class Liste {
 		}
 	}
 	
-	private void add(String url)
+	private void add(Objet url)
 	{
-		String article="https://datatracker.ietf.org"+url;
-		System.out.println("Ajout de "+article+"a la liste");//-----------------------------A EFFACER
-		if (!liste.contains(article))//verifie si l'url est pas déjà dans la liste (si plusieurs membres ont publié le même article)
+		String article=url.getArticle();
+		System.out.println("Ajout de "+article+"a la liste");
+		if (!liste.contains(url))//verifie si l'url est pas déjà dans la liste (si plusieurs membres ont publié le même article)
 		{
 			
-			liste.add(article);//ajoute l'url à la liste si il n'y est pas déjà
+			liste.add(url);//ajoute l'url à la liste si il n'y est pas déjà
 		}
 	}
-	public ArrayList<String> getListe()
+	public ArrayList<Objet> getListe()
 	{
 		
 		return liste;
