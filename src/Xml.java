@@ -35,11 +35,11 @@ public class Xml
          //sélectionner un nœud fils, modifier du texte, etc...
          Element courant = (Element)i.next();
          //On ajoute le nom courant à un arraylist
-         nom.add(courant.getChild("nom").getText());//Permet de gérer un bug
+         nom.add(courant.getChild("nom").getText());//On regarde le texte dans la balise qui s'appelle nom et on l'ajoute à la liste.
       }
 
    }
-   private void extraireNom(String fichier)//Metthode à utiliser, elle utilise le bon xml
+   private void extraireNom(String fichier)
    {
 	   SAXBuilder sxb = new SAXBuilder();
 	      try
