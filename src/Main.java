@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.jaunt.Document;
@@ -110,9 +111,16 @@ public class main {
 		System.out.println("Recherche des urls");//-----------------------------A EFFACER
 		Liste liste = new Liste(url.getArticles()); //Suprime les doublons
 		System.out.println("Suppression des doublons");//-----------------------------A EFFACER
+		PrintWriter receveur=null;
+		try {
+			receveur = new PrintWriter("article.txt");
+
+		
 		for (int i=0;i<liste.getListe().size();i++){
-			System.out.println(liste.getListe().get(i));
+			receveur.print(liste.getListe().get(i).getNom()+"; "+liste.getListe().get(i).getGTitre()+"; "+liste.getListe().get(i).getPTitre()+"; "+liste.getListe().get(i).getDate()+"; "+liste.getListe().get(i).getArticle()+"\n");
 		}
+		
+		} catch (FileNotFoundException e) {e.printStackTrace();}finally{receveur.close();}
 		}
 	
 	public static boolean isUpperCase(String str){
